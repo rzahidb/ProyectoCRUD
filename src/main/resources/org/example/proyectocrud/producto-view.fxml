@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.proyectocrud.controller.ProductoController"
+            prefWidth="1100.0"
+            prefHeight="720.0">
+
+    <center>
+
+        <ScrollPane fitToWidth="true"
+                    fitToHeight="true">
+
+            <content>
+
+                <VBox spacing="12.0">
+
+                    <padding>
+                        <Insets top="20"
+                                right="25"
+                                bottom="20"
+                                left="25"/>
+                    </padding>
+
+
+                    <Label text="Gestión de productos"
+                           style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+
+                    <GridPane hgap="15"
+                              vgap="10">
+
+
+                        <Label text="Código:"
+                               GridPane.columnIndex="0"
+                               GridPane.rowIndex="0"/>
+
+                        <TextField fx:id="txtCodigo"
+                                   promptText="Ej: PRD-001"
+                                   prefWidth="220"
+                                   GridPane.columnIndex="1"
+                                   GridPane.rowIndex="0"/>
+
+
+                        <Label text="Nombre:"
+                               GridPane.columnIndex="2"
+                               GridPane.rowIndex="0"/>
+
+                        <TextField fx:id="txtNombre"
+                                   promptText="Nombre del producto"
+                                   prefWidth="250"
+                                   GridPane.columnIndex="3"
+                                   GridPane.rowIndex="0"/>
+
+                        <Label text="Precio:"
+                               GridPane.columnIndex="0"
+                               GridPane.rowIndex="1"/>
+
+                        <TextField fx:id="txtPrecio"
+                                   promptText="0.00"
+                                   GridPane.columnIndex="1"
+                                   GridPane.rowIndex="1"/>
+
+
+                        <Label text="Stock:"
+                               GridPane.columnIndex="2"
+                               GridPane.rowIndex="1"/>
+
+                        <TextField fx:id="txtStock"
+                                   promptText="0"
+                                   GridPane.columnIndex="3"
+                                   GridPane.rowIndex="1"/>
+
+                        <Label text="Categoría:"
+                               GridPane.columnIndex="0"
+                               GridPane.rowIndex="2"/>
+
+                        <ComboBox fx:id="cmbCategoria"
+                                  promptText="Seleccione..."
+                                  prefWidth="220"
+                                  GridPane.columnIndex="1"
+                                  GridPane.rowIndex="2"/>
+
+
+                        <Label text="Marca:"
+                               GridPane.columnIndex="2"
+                               GridPane.rowIndex="2"/>
+
+                        <ComboBox fx:id="cmbMarca"
+                                  promptText="Seleccione..."
+                                  prefWidth="250"
+                                  GridPane.columnIndex="3"
+                                  GridPane.rowIndex="2"/>
+
+                        <Label text="Fecha:"
+                               GridPane.columnIndex="0"
+                               GridPane.rowIndex="3"/>
+
+                        <DatePicker fx:id="dpFecha"
+                                    prefWidth="220"
+                                    GridPane.columnIndex="1"
+                                    GridPane.rowIndex="3"/>
+
+
+                        <Label text="Descripción:"
+                               GridPane.columnIndex="2"
+                               GridPane.rowIndex="3"/>
+
+                        <TextField fx:id="txtDescripcion"
+                                   promptText="Descripción opcional"
+                                   GridPane.columnIndex="3"
+                                   GridPane.rowIndex="3"/>
+
+
+                        <columnConstraints>
+
+                            <ColumnConstraints minWidth="90"/>
+                            <ColumnConstraints prefWidth="230"/>
+
+                            <ColumnConstraints minWidth="100"/>
+                            <ColumnConstraints prefWidth="270"/>
+
+                        </columnConstraints>
+
+                    </GridPane>
+
+
+                    <HBox spacing="8">
+
+                        <Button fx:id="btnNuevo"
+                                text="Nuevo"
+                                onAction="#nuevoProducto"
+                                prefWidth="90"/>
+
+                        <Button fx:id="btnGuardar"
+                                text="Guardar"
+                                onAction="#guardarProducto"
+                                prefWidth="90"/>
+
+                        <Button fx:id="btnActualizar"
+                                text="Actualizar"
+                                onAction="#actualizarProducto"
+                                prefWidth="100"/>
+
+                        <Button fx:id="btnEliminar"
+                                text="Eliminar"
+                                onAction="#eliminarProducto"
+                                prefWidth="90"/>
+
+                    </HBox>
+
+
+                    <Separator/>
+
+
+                    <!-- ================================================= -->
+                    <!-- BÚSQUEDA Y FILTROS -->
+                    <!-- ================================================= -->
+
+                    <Label text="Búsqueda y filtros"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+
+                    <GridPane hgap="15"
+                              vgap="10">
+
+                        <!-- FILA 0 -->
+
+                        <Label text="Código o nombre:"
+                               GridPane.columnIndex="0"
+                               GridPane.rowIndex="0"/>
+
+                        <TextField fx:id="txtBuscar"
+                                   promptText="Buscar..."
+                                   prefWidth="220"
+                                   GridPane.columnIndex="1"
+                                   GridPane.rowIndex="0"/>
+
+
+                        <Label text="Categoría:"
+                               GridPane.columnIndex="2"
+                               GridPane.rowIndex="0"/>
+
+                        <ComboBox fx:id="cmbFiltroCategoria"
+                                  promptText="Todas"
+                                  prefWidth="220"
+                                  GridPane.columnIndex="3"
+                                  GridPane.rowIndex="0"/>
+
+
+                        <Label text="Desde:"
+                               GridPane.columnIndex="0"
+                               GridPane.rowIndex="1"/>
+
+                        <DatePicker fx:id="dpDesde"
+                                    prefWidth="220"
+                                    GridPane.columnIndex="1"
+                                    GridPane.rowIndex="1"/>
+
+
+                        <Label text="Hasta:"
+                               GridPane.columnIndex="2"
+                               GridPane.rowIndex="1"/>
+
+                        <DatePicker fx:id="dpHasta"
+                                    prefWidth="220"
+                                    GridPane.columnIndex="3"
+                                    GridPane.rowIndex="1"/>
+
+
+                        <Label text="Precio mínimo:"
+                               GridPane.columnIndex="0"
+                               GridPane.rowIndex="2"/>
+
+                        <TextField fx:id="txtPrecioMinimo"
+                                   promptText="0.00"
+                                   GridPane.columnIndex="1"
+                                   GridPane.rowIndex="2"/>
+
+
+                        <Label text="Precio máximo:"
+                               GridPane.columnIndex="2"
+                               GridPane.rowIndex="2"/>
+
+                        <TextField fx:id="txtPrecioMaximo"
+                                   promptText="0.00"
+                                   GridPane.columnIndex="3"
+                                   GridPane.rowIndex="2"/>
+
+
+
+                        <CheckBox fx:id="chkConExistencias"
+                                  text="Solo productos con existencias"
+                                  GridPane.columnIndex="0"
+                                  GridPane.columnSpan="2"
+                                  GridPane.rowIndex="3"/>
+
+
+                        <Label text="Ordenar por:"
+                               GridPane.columnIndex="2"
+                               GridPane.rowIndex="3"/>
+
+                        <ComboBox fx:id="cmbOrdenarPor"
+                                  promptText="Seleccione..."
+                                  prefWidth="220"
+                                  GridPane.columnIndex="3"
+                                  GridPane.rowIndex="3"/>
+
+
+                        <columnConstraints>
+
+                            <ColumnConstraints minWidth="120"/>
+                            <ColumnConstraints prefWidth="230"/>
+
+                            <ColumnConstraints minWidth="120"/>
+                            <ColumnConstraints prefWidth="230"/>
+
+                        </columnConstraints>
+
+                    </GridPane>
+
+
+
+                    <HBox spacing="8">
+
+                        <Button fx:id="btnBuscar"
+                                text="Buscar"
+                                onAction="#buscarProductos"
+                                prefWidth="90"/>
+
+                        <Button fx:id="btnLimpiarFiltros"
+                                text="Limpiar filtros"
+                                onAction="#limpiarFiltros"
+                                prefWidth="120"/>
+
+                    </HBox>
+
+
+                    <Separator/>
+
+
+
+                    <TableView fx:id="tblProductos"
+                               prefHeight="320">
+
+                        <columns>
+
+                            <TableColumn fx:id="colCodigo"
+                                         text="Código"
+                                         prefWidth="120"/>
+
+                            <TableColumn fx:id="colNombre"
+                                         text="Nombre"
+                                         prefWidth="180"/>
+
+                            <TableColumn fx:id="colCategoria"
+                                         text="Categoría"
+                                         prefWidth="150"/>
+
+                            <TableColumn fx:id="colMarca"
+                                         text="Marca"
+                                         prefWidth="150"/>
+
+                            <TableColumn fx:id="colPrecio"
+                                         text="Precio"
+                                         prefWidth="100"/>
+
+                            <TableColumn fx:id="colStock"
+                                         text="Stock"
+                                         prefWidth="90"/>
+
+                            <TableColumn fx:id="colFechaCreacion"
+                                         text="Fecha creación"
+                                         prefWidth="150"/>
+
+                        </columns>
+
+                    </TableView>
+
+                </VBox>
+
+            </content>
+
+        </ScrollPane>
+
+    </center>
+
+</BorderPane>
